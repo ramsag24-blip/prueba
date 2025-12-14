@@ -10,7 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <link rel="stylesheet" href="estilo.css">
+    <!-- Importante: usar contextPath para que el CSS cargue en producción -->
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/estilo.css">
 </head>
 <body>
 <%
@@ -19,22 +20,28 @@
 
 <nav class="navbar navbar-expand-lg bg-white border-bottom">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="index.jsp">StreamingApp</a>
+        <!-- Importante: usar contextPath -->
+        <a class="navbar-brand fw-bold" href="<%= request.getContextPath() %>/index.jsp">StreamingApp</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="nav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="categorias">Categorías</a></li>
-                <li class="nav-item"><a class="nav-link" href="peliculas">Películas</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/categorias">Categorías</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= request.getContextPath() %>/peliculas">Películas</a>
+                </li>
             </ul>
 
             <div class="d-flex align-items-center gap-2">
                 <span class="text-secondary small">
                     <%= (u != null ? u.getNombres() : "") %>
                 </span>
-                <a class="btn btn-outline-danger btn-sm" href="logout">Salir</a>
+                <a class="btn btn-outline-danger btn-sm" href="<%= request.getContextPath() %>/logout">Salir</a>
             </div>
         </div>
     </div>
@@ -52,7 +59,7 @@
                 <div class="card-body p-4">
                     <h5 class="fw-semibold">Categorías</h5>
                     <p class="text-secondary">Ver todas las categorías disponibles.</p>
-                    <a href="categorias" class="btn btn-primary">Ir a categorías</a>
+                    <a href="<%= request.getContextPath() %>/categorias" class="btn btn-primary">Ir a categorías</a>
                 </div>
             </div>
         </div>
@@ -62,7 +69,7 @@
                 <div class="card-body p-4">
                     <h5 class="fw-semibold">Películas</h5>
                     <p class="text-secondary">Listar películas y filtrar por categoría.</p>
-                    <a href="peliculas" class="btn btn-primary">Ir a películas</a>
+                    <a href="<%= request.getContextPath() %>/peliculas" class="btn btn-primary">Ir a películas</a>
                 </div>
             </div>
         </div>
